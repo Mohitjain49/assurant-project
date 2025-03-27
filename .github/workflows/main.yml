@@ -3,7 +3,7 @@ name: Build and Deploy Mohit's Website to AWS CloudFront
 on:
   push:
     branches:
-      - maining # Set this to your deployment branch
+      - main # Set this to your deployment branch
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
         with:
           args: --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: mohit-website
+          AWS_S3_BUCKET: 2025-ksu-hackathon
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'  # Your AWS Region

@@ -1,0 +1,198 @@
+:root {
+    --body-height: calc(100vh - 50px);
+
+    --blue-cobalt: #0047ab;
+    --blue-zero: rgb(187, 210, 255);
+
+    --blue-one: rgb(159, 191, 255);
+    --blue-two: rgb(117, 163, 255);
+    --blue-three: rgb(67, 130, 255);
+    --blue-four: rgb(82, 139, 252);
+    --blue-five: rgb(82, 3, 239);
+
+    --silver-color: #adadad;
+    --silver-light: #e4e2e2;
+    --globe-green: #4fc20ca8;
+    --globe-green-opaque: #3C7F13;
+    --dark-background: #232323;
+
+    --gold-color: rgb(126, 90, 0);
+    --gold-light: rgb(198, 147, 19);
+    --orange-light: rgb(248, 206, 171);
+
+    --translucent-background: rgba(255, 255, 255, 0.25);
+    --sector-background: rgba(0, 0, 0, 0);
+    --dark-translucent-background: rgba(0, 0, 0, 0.15);
+
+    --empty-border: 2px solid rgba(0, 0, 0, 0);
+    --thin-empty-border: 1px solid rgba(0, 0, 0, 0);
+    --default-transition: border 0.2s, color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    min-width: 350px;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+a, RouterLink {
+    text-decoration: none;
+    color: inherit;
+    border-color: inherit;
+}
+iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    color: var(--gold-color);
+}
+
+.web-body {
+    position: absolute;
+    padding-top: 55px;
+    height: auto;
+    min-height: calc(100% - 55px);
+    width: 100%;
+    min-width: 340px;
+    background: var(--dark-background);
+}
+.center-flex-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gradient-text {
+    background: var(--website-gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.webpage-cover {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    min-width: 350px;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.main-sector-bottom-linkBtn {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.main-sector-bottom-linkBtn a {
+    cursor: pointer;
+    height: 45px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--website-text);
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Lexend', 'Roboto', sans-serif;
+    border-radius: 10px;
+    text-decoration: none;
+    border: var(--empty-border);
+    background-color: var(--website-light-text);
+    transition: var(--default-transition);
+}
+.main-sector-bottom-linkBtn a:hover {
+    border-color: var(--website-text);
+}
+
+.main-sector-bottom-linkBtn a.linkBtn-blue {
+    color: var(--blue-cobalt);
+    border-color: var(--blue-cobalt);
+    background-color: var(--blue-zero);
+}
+.main-sector-bottom-linkBtn a.linkBtn-blue:hover {
+    background-color: var(--blue-two);
+    border-color: var(--blue-cobalt);
+}
+
+@media (max-width: 375px) {
+    body {
+        overflow-x: auto;
+    }
+}
+
+/**
+ * These are styles meant specifically for a more dynamic info sector page.
+ */
+
+ .info-sector-v2, .info-sector-v3 {
+    position: relative;
+    width: calc(100% - 40px) !important;
+    left: 40px;
+}
+.personal-web-body-v2, .personal-web-body-v3 {
+    top: 0px;
+    height: 100%;
+}
+
+@media (min-width: 2000px) {
+    .info-sector-v2 {
+        transform: scale(1.5, 1.5);
+    }
+    .personal-web-body-v2 {
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-sector-v2, .info-sector-v3 {
+        width: 100% !important;
+        left: 0;
+        top: 45px;
+    }
+}
+
+/**
+ * This is the universal custom scrollbar
+ */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    border: 1px solid white;
+    background: var(--blue-zero);
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--blue-three);
+    transition: background-color 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--blue-cobalt);
+}
+::-webkit-scrollbar-button {
+    display: none;
+}
