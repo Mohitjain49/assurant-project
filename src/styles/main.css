@@ -27,6 +27,7 @@
     --dark-translucent-background: rgba(0, 0, 0, 0.15);
 
     --empty-border: 2px solid rgba(0, 0, 0, 0);
+    --dotted-empty-border: 2px dotted rgba(0, 0, 0, 0);
     --thin-empty-border: 1px solid rgba(0, 0, 0, 0);
     --default-transition: border 0.2s, color 0.2s, background-color 0.2s, box-shadow 0.2s, font-size 0.2s ease;
 }
@@ -58,7 +59,7 @@ iframe {
 h1, h2, h3, p {
     margin: 0;
     padding: 0;
-    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
+    font-family: 'PT Sans', sans-serif;
     color: var(--gold-color);
 }
 

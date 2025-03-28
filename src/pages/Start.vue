@@ -1,10 +1,13 @@
 <template>
 <AppNav />
+<MainMenu />
 <div :id="CESIUM_VIEWER_ID"></div>
 </template>
 
 <script setup>
 import AppNav from '@/components/AppNav.vue';
+import MainMenu from "@/app/MainMenu.vue";
+
 import { CESIUM_VIEWER_ID, useGlobeStore } from '@/stores/GlobeStore.js';
 import { onMounted, onBeforeUnmount } from 'vue';
 

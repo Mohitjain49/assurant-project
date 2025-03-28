@@ -18,7 +18,10 @@ library.add(
     FaIcons.faPaperPlane,
     FaIcons.faCircleUser,
     FaIcons.faUserPlus,
-    FaIcons.faArrowRightFromBracket
+    FaIcons.faArrowRightFromBracket,
+    FaIcons.faMagnifyingGlass,
+    FaIcons.faUserGroup,
+    FaIcons.faStreetView
 )
 
 Ion.defaultAccessToken = import.meta.env.VITE_APP_CESIUM_KEY;

@@ -1,5 +1,5 @@
 <template>
-<div class="app-navBar">
+<div :class="getAppNavClasses()">
     <div class="app-navBar-side left">
         <RouterLink to="/" class="app-navBar-icon" title="Go To Application">
             <font-awesome-icon icon="fa-house" />
@@ -21,7 +21,42 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const route = useRoute();
+const smallWidth = ref(0);
+
+onMounted(() => {
+    if(route.path != "/") { return; }
+    determineSmallWidth();
+    window.addEventListener("resize", determineSmallWidth);
+})
+onBeforeUnmount(() => {
+    if(route.path != "/") { return; }
+    window.removeEventListener("resize", determineSmallWidth);
+})
+
+/**
+ * This function determines how the app should look based on the viewport width.
+ */
+function determineSmallWidth() {
+    const windowWidth = window.innerWidth;
+    if(windowWidth < 1350) {
+        smallWidth.value = 1;
+    } else if(windowWidth < 600) {
+        smallWidth.value = 2;
+    } else {
+        smallWidth.value = 0;
+    }
+}
+
+/**
+ * This returns the classes for the main navigation bar.
+ */
+function getAppNavClasses() {
+    return ['app-navBar', ((route.path == "/") ? 'globe' : '')];
+}
 </script>
 
 <style scoped>
@@ -41,6 +76,11 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+}
+.app-navBar.globe {
+    width: 375px;
+    right: 10px;
+    left: auto;
 }
 
 .app-navBar-side {
@@ -69,7 +109,7 @@
 .app-navBar-icon svg {
     font-size: 25px;
     padding: 5px;
-    border: 2px dotted rgba(0, 0, 0, 0);
+    border: var(--dotted-empty-border);
     border-radius: 10px;
     transition: var(--default-transition);
 }
@@ -80,6 +120,7 @@
 
 @media (max-width: 500px) {
     .app-navBar {
+        position: absolute;
         width: calc(100% - 50px);
         min-width: 300px;
         left: 25px;
