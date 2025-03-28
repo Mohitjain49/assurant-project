@@ -1,6 +1,4 @@
 :root {
-    --body-height: calc(100vh - 50px);
-
     --blue-cobalt: #0047ab;
     --blue-zero: rgb(187, 210, 255);
 
@@ -16,6 +14,10 @@
     --globe-green-opaque: #3C7F13;
     --dark-background: #232323;
 
+    --deep-teal: #008080;
+    --deep-teal-translucent: #008080d0;
+    --deep-teal-two: #00e4e4;
+
     --gold-color: rgb(126, 90, 0);
     --gold-light: rgb(198, 147, 19);
     --orange-light: rgb(248, 206, 171);
@@ -26,7 +28,7 @@
 
     --empty-border: 2px solid rgba(0, 0, 0, 0);
     --thin-empty-border: 1px solid rgba(0, 0, 0, 0);
-    --default-transition: border 0.2s, color 0.2s, background-color 0.2s, box-shadow 0.2s;
+    --default-transition: border 0.2s, color 0.2s, background-color 0.2s, box-shadow 0.2s, font-size 0.2s ease;
 }
 
 body {
@@ -62,11 +64,11 @@ h1, h2, h3, p {
 
 .web-body {
     position: absolute;
-    padding-top: 55px;
+    padding-top: 70px;
     height: auto;
-    min-height: calc(100% - 55px);
+    min-height: calc(100% - 70px);
     width: 100%;
-    min-width: 340px;
+    min-width: 350px;
     background: var(--dark-background);
 }
 .center-flex-display {

@@ -1,0 +1,95 @@
+#app-globe {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    min-width: 340px;
+    top: 0px;
+    left: 0px;
+}
+#app-geocoder {
+    position: relative;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Lexend', sans-serif;
+}
+
+.cesium-geocoder-input {
+    width: 85%;
+    text-align: center;
+    background-color: var(--blue-zero);
+    padding: 10px;
+    border: 2px solid var(--blue-cobalt);
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+    transition: var(--default-transition), padding 0.2s;
+    outline: none;
+    font-family: inherit;
+    box-shadow: 0px 0px 5px 0px black;
+}
+.cesium-geocoder-input:hover {
+    background-color: var(--blue-one);
+    border-color: black;
+    padding: 12px !important;
+    box-shadow: 0px 0px 10px 0px black;
+}
+.cesium-geocoder-input:focus {
+    background-color: var(--blue-one);
+    border-color: black;
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+#app-geocoder ul {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 10px 0px;
+}
+#app-geocoder li {
+    position: relative;
+    color: var(--blue-cobalt);
+    width: 85%;
+    list-style-type: none;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid var(--blue-cobalt);
+    letter-spacing: 1px;
+    background: var(--blue-zero);
+    margin-top: 10px;
+    padding: 7.5px 0px;
+    border-radius: 10px;
+    transition: var(--default-transition), padding 0.2s;
+    box-shadow: 0px 0px 5px 0px black;
+}
+#app-geocoder li:hover {
+    color: black;
+    background-color: var(--blue-one);
+    border: 2px solid black;
+    padding: 12px;
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+.cesium-geocoder-searchButton {
+    display: none;
+}
+.cesium-viewer-bottom {
+    display: none;
+}
+
+.search-results {
+    position: relative;
+    width: 100%;
+}
+.cesium-geocoder-input::placeholder {
+    color: var(--blue-cobalt);
+    font-weight: 500;
+}
