@@ -11,9 +11,10 @@ import { onMounted, onBeforeUnmount } from 'vue';
 const globeStore = useGlobeStore();
 
 onMounted(() => {
+    document.title = "MMI - Mapping Mental Illnesses";
     globeStore.mountGlobe();
 })
 onBeforeUnmount(() => {
-    globeStore.onBeforeUnmount();
+    globeStore.unmountGlobe();
 })
 </script>

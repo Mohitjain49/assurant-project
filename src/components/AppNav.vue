@@ -10,7 +10,7 @@
     </div>
 
     <div class="app-navBar-side right">
-        <RouterLink to="/profile" class="app-navBar-icon" title="Sign Up">
+        <RouterLink to="/signup" class="app-navBar-icon" title="Sign Up">
             <font-awesome-icon icon="fa-user-plus" />
         </RouterLink>
         <RouterLink to="/signin" class="app-navBar-icon" title="Sign In">
@@ -76,5 +76,13 @@
 .app-navBar-icon:hover svg {
     background-color: #8B4513;
     border-color: white;
+}
+
+@media (max-width: 500px) {
+    .app-navBar {
+        width: calc(100% - 50px);
+        min-width: 300px;
+        left: 25px;
+    }
 }
 </style>
