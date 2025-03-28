@@ -9,5 +9,20 @@ import { Ion } from 'cesium'
 import App from './App.vue'
 import router from './router.js'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import * as FaIcons from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+    FaIcons.faHouse,
+    FaIcons.faPaperPlane,
+    FaIcons.faCircleUser,
+    FaIcons.faUserPlus,
+    FaIcons.faArrowRightFromBracket
+)
+
 Ion.defaultAccessToken = import.meta.env.VITE_APP_CESIUM_KEY;
-createApp(App).use(createPinia()).use(router).mount('#app');
+createApp(App).component('font-awesome-icon', FontAwesomeIcon)
+    .use(createPinia())
+    .use(router)
+    .mount('#app');
