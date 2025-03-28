@@ -1,6 +1,7 @@
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 import './styles/main.css';
 import "./styles/globe.css";
+import "./styles/menu.css";
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

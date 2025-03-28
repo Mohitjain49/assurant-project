@@ -9,9 +9,13 @@ export const useGlobeStore = defineStore("globe-store", () => {
     const storeMounted = ref(false);
 
     /**
-     * @type {import('vue').Ref<Cesium.Viewer>}
+     * @type {import('vue').Ref<Cesium.Viewer>} The Viewer to see and edit the map.
      */
     const viewer = ref(null);
+
+    /**
+     * @type {import('vue').Ref<Cesium.Geocoder>} The Viewer to see and edit the map.
+     */
     const geocoder = ref(null);
 
     /**
@@ -51,5 +55,23 @@ export const useGlobeStore = defineStore("globe-store", () => {
         })
     }
 
-    return { viewer, geocoder, mountGlobe, unmountGlobe }
+    /**
+     * This function sets the Geocoder for the application.
+     * @param {Boolean} status This new status for the Geocoder.
+     */
+    function setGeocoder(status = true) {
+        if(!status && geocoder.value != null) {
+            geocoder.value.destroy();
+            geocoder.value == null;
+            return;
+        }
+
+        geocoder.value = new Cesium.Geocoder({
+            flightDuration: 3,
+            scene: viewer.value.scene,
+            container: CESIUM_GEOCODER_ID
+        });
+    }
+
+    return { viewer, geocoder, mountGlobe, unmountGlobe, setGeocoder }
 })

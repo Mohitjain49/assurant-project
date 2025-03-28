@@ -1,9 +1,9 @@
 <template>
 <div class="app-menu">
     <MenuTitle />
-    <div class="menu-body">
+    
+    <SearchLocations v-if="appStore.menuOpen > -1" />
 
-    </div>
     <MenuNavBar />
 </div>
 </template>
@@ -11,24 +11,9 @@
 <script setup>
 import MenuNavBar from './MenuNavBar.vue';
 import MenuTitle from './MenuTitle.vue';
-</script>
 
-<style scoped>
-.app-menu {
-    overflow: hidden;
-    position: fixed;
-    top: 10px;
-    left: 20px;
-    width: 400px;
-    height: calc(100% - 24px);
-    background-color: var(--deep-teal);
-    border: 2px solid white;
-    border-radius: 20px;
-    opacity: 0.95;
-    z-index: 10;
-}
-.menu-body {
-    width: 100%;
-    height: calc(100% - 100px);
-}
-</style>
+import SearchLocations from './screens/SearchLocations.vue';
+
+import { useAppStore } from '@/stores/AppStore.js';
+const appStore = useAppStore();
+</script>
