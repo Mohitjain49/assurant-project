@@ -1,6 +1,4 @@
 :root {
-    --body-height: calc(100vh - 50px);
-
     --blue-cobalt: #0047ab;
     --blue-zero: rgb(187, 210, 255);
 
@@ -15,6 +13,9 @@
     --globe-green: #4fc20ca8;
     --globe-green-opaque: #3C7F13;
     --dark-background: #232323;
+
+    --deep-teal: #008080;
+    --deep-teal-translucent: #008080d0;
 
     --gold-color: rgb(126, 90, 0);
     --gold-light: rgb(198, 147, 19);
@@ -62,11 +63,11 @@ h1, h2, h3, p {
 
 .web-body {
     position: absolute;
-    padding-top: 55px;
+    padding-top: 60px;
     height: auto;
-    min-height: calc(100% - 55px);
+    min-height: calc(100% - 60px);
     width: 100%;
-    min-width: 340px;
+    min-width: 350px;
     background: var(--dark-background);
 }
 .center-flex-display {
