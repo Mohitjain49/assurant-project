@@ -24,7 +24,8 @@ library.add(
     FaIcons.faArrowRightFromBracket,
     FaIcons.faMagnifyingGlass,
     FaIcons.faUserGroup,
-    FaIcons.faStreetView
+    FaIcons.faStreetView,
+    FaIcons.faImage
 );
 
 
