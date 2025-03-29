@@ -12,8 +12,10 @@ export const useAppStore = defineStore('app-store', () => {
     const userStore = useUserStore();
 
     const menuOpen = ref(3);
-    const meetups = ref(null);
-    const users = ref(null);
+    const meetups = ref([]);
+    const users = ref([]);
+
+    const userExists = ref(-1);
 
     /**
      * This function mounts the application.
@@ -21,6 +23,7 @@ export const useAppStore = defineStore('app-store', () => {
     function mountApp() {
         axios.get((API_DOMAIN + "get_all_meetups")).then((response) => {
             meetups.value = response.data.data;
+            setTimeout(() => { createMapPoints(); }, 500);
         }).catch((e) => {
             console.log(e);
         });
@@ -28,6 +31,7 @@ export const useAppStore = defineStore('app-store', () => {
         axios.get((API_DOMAIN + "get")).then((response) => {
             users.value = response.data;
             console.log(users.value);
+            setTimeout(() => { userExists.value = checkUserExists(); }, 500);
         }).catch((e) => {
             console.log(e);
         });
@@ -47,17 +51,56 @@ export const useAppStore = defineStore('app-store', () => {
      * @param {String} city the city to find.
      * @param {String} state the state where the city is. 
      */
-    function getCoordsOfCity(city = "Atlanta", state = "GA") {
+    function createMeetup(city = "Atlanta", state = "GA", time = "", zip = 30055, name2) {
         const query = `${city}, ${state}`;
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
 
         axios.get(url).then((response) => {
             const data = response.data[0];
-            console.log(data.lon, data.lat);
+            axios.post((API_DOMAIN + "create_meetup"), {
+                city, state, time, zip, 
+                name1: (userStore.userInfo.firstName + " " + userStore.userInfo.lastName),
+                name2, lon: data.lon, lat: data.lat
+            }).then(() => {
+                alert("Meeting Made. Please refresh the app to see it.")
+            }).catch((e) => {
+                console.log(e)
+                alert("An error occurred");
+            })
         })
     }
 
-    return { menuOpen, meetups, users,
-        mountApp, setMenuOpen, getCoordsOfCity
+    function checkUserExists() {
+        for(let i = 0; i < users.value.length; i++) {
+            const parameter = users.value[i].name === (userStore.userInfo.firstName + " " + userStore.userInfo.lastName);
+            if(parameter) { return i; }
+        }
+        return -1;
+    }
+
+    /**
+     * this function creates points of meetup locations.
+     */
+    function createMapPoints() {
+        for(let i = 0; i < meetups.value.length; i++) {
+            const userFullName = (userStore.userInfo.firstName + " " + userStore.userInfo.lastName);
+            const meetup = meetups.value[i]
+
+            if(meetup.name1 === userFullName || meetup.name2 === userFullName) {
+                globeStore.createPoint(parseFloat(meetup.longitude), parseFloat(meetup.latitude));
+            }
+        }
+    }
+
+    return { menuOpen, meetups, users, userExists,
+        mountApp, setMenuOpen, createMeetup
     };
 })
+
+/**
+ * This navigates the app to the meetups store.
+ */
+export function goToMeetups() {
+    const appStore = useAppStore();
+    appStore.setMenuOpen(2);
+}

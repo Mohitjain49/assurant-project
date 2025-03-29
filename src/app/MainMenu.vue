@@ -21,10 +21,5 @@ import FindPeople from "./screens/FindPeople.vue";
 import YourMeetings from './screens/YourMeetings.vue';
 
 import { useAppStore } from '@/stores/AppStore.js';
-import { onMounted } from 'vue';
 const appStore = useAppStore();
-
-onMounted(() => {
-    appStore.getCoordsOfCity("Atlanta");
-})
 </script>

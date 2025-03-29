@@ -13,7 +13,7 @@
     <div class="create-meeting" v-if="createMeetingOpen">
         <h2 class="create-meeting-header">Create a Meeting</h2>
         <div class="input-group">
-            <label for="username">Name (First and Last):</label>
+            <label for="username">Companion:</label>
             <input id="username" v-model="newMeeting.username" type="text" placeholder="Enter username">
         </div>
         <div class="input-group">
@@ -37,17 +37,24 @@
     </div>
 
     <template v-else>
-        <div class="meeting-tab">
-            <div class="meeting-tab-header">With Mohit Jain</div>
-            <p> Time: 12am </p>
-            <p> Place: Atlanta, GA </p>
-        </div>
+        <template v-for="meetup in appStore.meetups">
+            <div v-if="checkMeetup(meetup.name1, meetup.name2)" class="meeting-tab">
+                <div class="meeting-tab-header"> {{ getOtherPerson(meetup.name1, meetup.name2) }} </div>
+                <p> {{ 'Time: ' + meetup.time }} </p>
+                <p> {{ 'Place: ' + (meetup.city + ", " + meetup.state + ", " + meetup.zip) }}</p>
+            </div>
+        </template>
     </template>
 </div>
 </template>
 
 <script setup>
+import { useAppStore } from "@/stores/AppStore.js";
+import { useUserStore } from "@/stores/UserStore.js";
 import { ref } from "vue";
+
+const appStore = useAppStore();
+const userStore = useUserStore();
 const createMeetingOpen = ref(false);
 
 /**
@@ -55,6 +62,26 @@ const createMeetingOpen = ref(false);
  */
 function toggleTab() {
     createMeetingOpen.value = !createMeetingOpen.value;
+}
+
+/**
+ * Checks meetup.
+ * @param name1 name 1
+ * @param name2 name 2
+ */
+function checkMeetup(name1, name2) {
+    const userFullName = (userStore.userInfo.firstName + " " + userStore.userInfo.lastName);
+    return (name1 === userFullName || name2 === userFullName);
+}
+
+/**
+ * gets other person.
+ * @param name1 name 1
+ * @param name2 name 2
+ */
+function getOtherPerson(name1, name2) {
+    const userFullName = (userStore.userInfo.firstName + " " + userStore.userInfo.lastName);
+    return ("With " + ((name1 === userFullName) ? name2 : name1));
 }
 
 // New Meeting Form Data
@@ -66,18 +93,12 @@ const newMeeting = ref({
     time: ''
 });
 
-// Function to create a new meeting
-const createMeeting = () => {
+function createMeeting() {
     if (!newMeeting.value.username || !newMeeting.value.state || !newMeeting.value.city || !newMeeting.value.zipcode || !newMeeting.value.time) {
         alert("Please fill out all fields!");
         return;
     }
-
-    // Add new meeting to the list
-    meetings.value.push({ ...newMeeting.value, id: meetings.value.length + 1 });
-
-    // Clear the form
-    newMeeting.value = { username: '', state: '', city: '', zipcode: '', time: '' };
+    appStore.createMeetup(newMeeting.value.city, newMeeting.value.state, newMeeting.value.time, newMeeting.value.zipcode, newMeeting.value.username);
 };
 </script>
 

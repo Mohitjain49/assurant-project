@@ -8,7 +8,7 @@
                 <p> {{ 'Condition: ' + user.condition }} </p>
             </div>
 
-            <div class="user-tab-meetingBtn">
+            <div class="user-tab-meetingBtn" @click="appStore.setMenuOpen(2)">
                 <span> Set Meeting </span>
                 <font-awesome-icon icon="fa-calendar" />
             </div>
