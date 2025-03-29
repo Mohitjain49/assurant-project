@@ -5,6 +5,9 @@ import "./styles/globe.css";
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import VueParticles from '@tsparticles/vue3';
+import { loadSlim } from '@tsparticles/slim';
+
 import { Amplify } from 'aws-amplify';
 import { Ion } from 'cesium'
 
@@ -48,4 +51,6 @@ Ion.defaultAccessToken = import.meta.env.VITE_APP_CESIUM_KEY;
 createApp(App).component('font-awesome-icon', FontAwesomeIcon)
     .use(createPinia())
     .use(router)
-    .mount('#app');
+    .use(VueParticles, {
+        init: async engine => await loadSlim(engine)
+    }).mount('#app');

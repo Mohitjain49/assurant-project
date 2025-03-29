@@ -1,10 +1,12 @@
 <template>
 <AppNav />
+<ParticlesBackground />
+
 <Transition name="alertBoxTransition" appear fade>
     <AuthError v-if="userStore.authErrorBox.status" />
 </Transition>
 
-<main class="web-body">
+<main id="auth-page" class="web-body">
     <div class="auth-box-container center-flex-display"> 
         <div class="signin-box">
             <h2 class="signin-box-title">Sign In</h2>
@@ -29,6 +31,7 @@
 <script setup>
 import AppNav from '@/components/AppNav.vue';
 import AuthError from '@/components/AuthError.vue';
+import ParticlesBackground from '@/components/ParticlesBackground.vue';
 
 import { useUserStore } from '@/stores/UserStore.js';
 import { ref, onBeforeMount } from 'vue';
@@ -54,6 +57,10 @@ function initSignIn() {
 </script>
 
 <style scoped>
+.web-body#auth-page {
+    background: transparent;
+}
+
 .auth-box-container {
     width: 100%;
     height: 700px;

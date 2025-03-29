@@ -18,10 +18,12 @@ export const useAppStore = defineStore('app-store', () => {
      * This function mounts the application.
      */
     function mountApp() {
-        axios.get((API_DOMAIN + "get_all_meetups"), (response) => {
+        axios.get((API_DOMAIN + "get_all_meetups")).then((response) => {
             meetups.value = response.data;
             console.log(response, meetups.value);
-        });
+        }).catch((e) => {
+            console.log(e);
+        })
     }
 
     /**

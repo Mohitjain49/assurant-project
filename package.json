@@ -15,6 +15,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@tsparticles/slim": "^3.8.1",
+    "@tsparticles/vue3": "^3.0.1",
     "aws-amplify": "^6.14.1",
     "axios": "^1.8.4",
     "cesium": "^1.127.0",
