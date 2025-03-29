@@ -17,8 +17,6 @@ const userStore = useUserStore();
 
 onMounted(() => {
     document.title = "MMI - Mapping Mental Illnesses";
-    console.log(userStore.userPresent);
-
     userStore.updateUserInfo();
     globeStore.mountGlobe();
 })

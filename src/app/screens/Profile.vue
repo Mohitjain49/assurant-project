@@ -15,9 +15,13 @@
         </div>
     </div>
 
-    <div class="app-menu-body placeholder" v-if="editingProfile">
+    <div class="app-menu-body" v-if="editingProfile">
         <font-awesome-icon class="profile-img-edit" icon="fa-xmark" title="Stop Editing" @click="toggleEditStatus()" />
-        Editing is not available at the moment. We apologize for the inconvenience.
+        <form @submit.prevent class="profile-form">
+            <div class="form-radio-group" v-for="(group, index) in radioGroups">
+                
+            </div>
+        </form>
     </div>
 </template>
 <template v-else>
@@ -35,6 +39,7 @@ import { ref } from 'vue';
 
 const userStore = useUserStore();
 const editingProfile = ref(false);
+const radioGroups = ref(new Array(20));
 
 /**
  * This toggles the status of if the user is editing their profile or not.
@@ -149,5 +154,19 @@ function toggleEditStatus() {
     color: var(--blue-five);
     border-bottom: 1px solid;
     margin-bottom: 15px;
+}
+
+.profile-form {
+    width: 100%;
+    height: fit-content;
+    min-height: 100%;
+    overflow: hidden;
+}
+.form-radio-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
 }
 </style>
