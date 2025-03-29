@@ -42,7 +42,7 @@ const password = ref("");
 
 onBeforeMount(() => {
     userStore.updateUserInfo();
-    document.title = "MMI | Sign In";
+    document.title = "MND | Sign In";
 })
 
 /**

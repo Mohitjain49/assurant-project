@@ -18,7 +18,7 @@ const userStore = useUserStore();
 const appStore = useAppStore();
 
 onMounted(() => {
-    document.title = "MMI - Mapping Mental Illnesses";
+    document.title = "MND - Mapping Neurodivergence";
     userStore.updateUserInfo();
     globeStore.mountGlobe();
     appStore.mountApp();

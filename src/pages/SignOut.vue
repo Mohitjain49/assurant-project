@@ -13,7 +13,7 @@ import { onBeforeMount } from 'vue';
 
 const userStore = useUserStore();
 onBeforeMount(() => {
-    document.title = "MMI | Sign Out";
+    document.title = "MND | Sign Out";
     userStore.logOutUser(true);
 })
 </script>

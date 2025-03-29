@@ -119,7 +119,7 @@ function setVerificationPopup() {
 }
 
 onBeforeMount(() => {
-    document.title = "MMI | Sign Up";
+    document.title = "MND | Sign Up";
     userStore.updateUserInfo("/");
 });
 </script>

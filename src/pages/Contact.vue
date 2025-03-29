@@ -10,6 +10,6 @@ import AppNav from '@/components/AppNav.vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
-    document.title = "MMI | Contact Us";
+    document.title = "MND | Contact Us";
 })
 </script>
