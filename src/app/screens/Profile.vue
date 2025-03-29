@@ -1,32 +1,32 @@
 <template>
-<div class="app-menu-body" v-if="!editingProfile">
-    <div class="profile-img-body">
-        <h1 class="profile-img-placeholder"> MJ </h1>
-        <font-awesome-icon class="profile-img-edit" icon="fa-pen" title="Edit Profile" @click="toggleEditStatus()" />
+<template v-if="userStore.userPresent">
+    <div class="app-menu-body" v-if="!editingProfile">
+        <div class="profile-img-body">
+            <h1 class="profile-img-placeholder"> MJ </h1>
+            <font-awesome-icon class="profile-img-edit" icon="fa-pen" title="Edit Profile" @click="toggleEditStatus()" />
+        </div>
+
+        <h1 class="profile-name"> {{ userStore.userInfo.firstName + ' ' + userStore.userInfo.lastName }} </h1>
+
+        <div class="profile-desc">
+            <div class="profile-link-header"> Email </div>
+            <a :href="('mailto:' + userStore.userInfo.email)" class="profile-link"> {{ userStore.userInfo.email }} </a>
+            <div style="height: 5px;"></div>
+        </div>
     </div>
 
-    <h1 class="profile-name"> Mohit Jain </h1>
-    <div class="profile-desc">
-        Hello My name is Mohit Jain! I am currently diagnosed with ADHD and it has affected me with my relationships all my life. 
-        I'm looking for others to talk to about this.
+    <div class="app-menu-body placeholder" v-if="editingProfile">
+        <font-awesome-icon class="profile-img-edit" icon="fa-xmark" title="Stop Editing" @click="toggleEditStatus()" />
+        Editing is not available at the moment. We apologize for the inconvenience.
     </div>
-
-    <div class="profile-desc">
-        <div class="profile-link-header"> Email </div>
-        <a :href="('mailto:' + PLACEHOLDER_EMAIL)" class="profile-link"> {{ PLACEHOLDER_EMAIL }} </a>
-        <div style="height: 5px;"></div>
+</template>
+<template v-else>
+    <div class="app-menu-body placeholder">
+        <h1 class="profile-img-placeholder"> ? </h1>
+        <span style="margin: 10px 0px;"> You are not currently signed in at the moment. </span>
+        <RouterLink to="/signin" class="profile-signin-btn"> Sign In </RouterLink>
     </div>
-    <div class="profile-desc">
-        <div class="profile-link-header"> Social Media </div>
-        <a :href="PLACEHOLDER_SOCIAL_MEDIA" class="profile-link"> {{ PLACEHOLDER_SOCIAL_MEDIA }} </a>
-        <div style="height: 5px;"></div>
-    </div>
-</div>
-
-<div class="app-menu-body placeholder" v-if="editingProfile">
-    <font-awesome-icon class="profile-img-edit" icon="fa-xmark" title="Stop Editing" @click="toggleEditStatus()" />
-    Editing is not available at the moment. We apologize for the inconvenience.
-</div>
+</template>
 </template>
 
 <script setup>
@@ -42,9 +42,6 @@ const editingProfile = ref(false);
 function toggleEditStatus() {
     editingProfile.value = !editingProfile.value;
 }
-
-const PLACEHOLDER_EMAIL = "mohitkjain49@gmail.com";
-const PLACEHOLDER_SOCIAL_MEDIA = "https://www.mohit-jain.com/"
 </script>
 
 <style>
@@ -57,6 +54,19 @@ const PLACEHOLDER_SOCIAL_MEDIA = "https://www.mohit-jain.com/"
     font-family: 'PT Sans', sans-serif;
     font-size: 25px;
     text-align: center;
+    width: calc(100% - 20px);
+    padding: 0px 10px;
+}
+.profile-signin-btn {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.25);
+    transition: var(--default-transition), padding 0.2s;
+}
+.profile-signin-btn:hover {
+    padding: 13px;
+    background-color: var(--blue-three);
 }
 
 .profile-img-body {

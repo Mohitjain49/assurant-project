@@ -11,8 +11,7 @@ export const useUserStore = defineStore("user-store", () => {
     const userInfo = ref({
         firstName: "",
         lastName: "",
-        email: "",
-        phoneNumber: ""
+        email: ""
     });
 
     const authErrorBox = ref({
@@ -141,8 +140,7 @@ export const useUserStore = defineStore("user-store", () => {
             userInfo.value = {
                 firstName: userAttributes.given_name,
                 lastName: userAttributes.family_name,
-                email: userAttributes.email,
-                phoneNumber: userAttributes.phone_number
+                email: userAttributes.email
             }
             router.push(nextRoute);
         }).catch((e) => {
@@ -165,7 +163,7 @@ export const useUserStore = defineStore("user-store", () => {
      */
     function resetUserInfo() {
         setUserPresent(false);
-        userInfo.value = { firstName: "", lastName: "", email: "", phoneNumber: "" }
+        userInfo.value = { firstName: "", lastName: "", email: "" }
     }
 
     /**
