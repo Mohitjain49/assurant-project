@@ -17,29 +17,25 @@
 .cesium-geocoder-input {
     width: 85%;
     text-align: center;
-    background-color: var(--blue-zero);
+    background-color: var(--blue-two);
     padding: 10px;
-    border: 2px solid var(--blue-cobalt);
+    border: 2px solid var(--deep-teal);
     border-radius: 10px;
-    color: black;
+    color: white;
     font-weight: bold;
     letter-spacing: 1px;
     font-size: 14px;
     transition: var(--default-transition), padding 0.2s;
     outline: none;
     font-family: inherit;
-    box-shadow: 0px 0px 5px 0px black;
+    box-shadow: 0px 0px 2px 0px white;
 }
 .cesium-geocoder-input:hover {
-    background-color: var(--blue-one);
-    border-color: black;
     padding: 12px !important;
-    box-shadow: 0px 0px 10px 0px black;
+    box-shadow: 0px 0px 10px 0px white;
 }
 .cesium-geocoder-input:focus {
-    background-color: var(--blue-one);
-    border-color: black;
-    box-shadow: 0px 0px 10px 0px black;
+    box-shadow: 0px 0px 10px 0px white;
 }
 
 #app-geocoder ul {
@@ -61,21 +57,18 @@
     font-family: inherit;
     font-weight: bold;
     cursor: pointer;
-    border: 2px solid var(--blue-cobalt);
+    border: 2px solid var(--deep-teal);
     letter-spacing: 1px;
-    background: var(--blue-zero);
+    background: var(--blue-two);
     margin-top: 10px;
     padding: 7.5px 0px;
     border-radius: 10px;
     transition: var(--default-transition), padding 0.2s;
-    box-shadow: 0px 0px 5px 0px black;
+    box-shadow: 0px 0px 5px 0px white;
 }
 #app-geocoder li:hover {
-    color: black;
-    background-color: var(--blue-one);
-    border: 2px solid black;
     padding: 12px;
-    box-shadow: 0px 0px 10px 0px black;
+    box-shadow: 0px 0px 10px 0px white;
 }
 
 .cesium-geocoder-searchButton {
@@ -92,4 +85,23 @@
 .cesium-geocoder-input::placeholder {
     color: var(--blue-cobalt);
     font-weight: 500;
+}
+
+.app-menu {
+    overflow: hidden;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    width: 400px;
+    height: calc(100% - 24px);
+    background-color: var(--deep-teal);
+    border: 2px solid white;
+    border-radius: 20px;
+    opacity: 0.95;
+    z-index: 10;
+}
+.app-menu-body {
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow: auto;
 }

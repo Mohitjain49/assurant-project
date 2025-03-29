@@ -4,6 +4,11 @@ import "./styles/globe.css";
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+
+import VueParticles from '@tsparticles/vue3';
+import { loadSlim } from '@tsparticles/slim';
+
+import { Amplify } from 'aws-amplify';
 import { Ion } from 'cesium'
 
 import App from './App.vue'
@@ -18,11 +23,35 @@ library.add(
     FaIcons.faPaperPlane,
     FaIcons.faCircleUser,
     FaIcons.faUserPlus,
-    FaIcons.faArrowRightFromBracket
-)
+    FaIcons.faArrowRightToBracket,
+    FaIcons.faArrowRightFromBracket,
+    FaIcons.faMagnifyingGlass,
+    FaIcons.faUserGroup,
+    FaIcons.faStreetView,
+    FaIcons.faImage,
+    FaIcons.faPen,
+    FaIcons.faXmark,
+    FaIcons.faPlus,
+    FaIcons.faArrowUp,
+    FaIcons.faCalendar
+);
+
+
+const COGNITO_VARIABLES = {
+    userPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+    userPoolClientId: import.meta.env.VITE_COGNITO_USER_POOL_WEB_CLIENT_ID,
+    region: import.meta.env.VITE_AWS_REGION
+}
+
+Amplify.configure({
+    Auth: { Cognito: COGNITO_VARIABLES }
+});
 
 Ion.defaultAccessToken = import.meta.env.VITE_APP_CESIUM_KEY;
+
 createApp(App).component('font-awesome-icon', FontAwesomeIcon)
     .use(createPinia())
     .use(router)
-    .mount('#app');
+    .use(VueParticles, {
+        init: async engine => await loadSlim(engine)
+    }).mount('#app');

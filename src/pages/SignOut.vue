@@ -1,15 +1,25 @@
 <template>
 <AppNav />
-<main class="web-body">
-    <h1> Hello </h1>
-</main>
+<ParticlesBackground />
+<main id="auth-page" class="web-body"></main>
 </template>
 
 <script setup>
 import AppNav from '@/components/AppNav.vue';
-import { onMounted } from 'vue';
+import ParticlesBackground from '@/components/ParticlesBackground.vue';
 
-onMounted(() => {
-    document.title = "MMI | Sign Out";
+import { useUserStore } from '@/stores/UserStore.js';
+import { onBeforeMount } from 'vue';
+
+const userStore = useUserStore();
+onBeforeMount(() => {
+    document.title = "MND | Sign Out";
+    userStore.logOutUser(true);
 })
 </script>
+
+<style scoped>
+.web-body#auth-page {
+    background: transparent;
+}
+</style>

@@ -21,12 +21,14 @@
     --gold-color: rgb(126, 90, 0);
     --gold-light: rgb(198, 147, 19);
     --orange-light: rgb(248, 206, 171);
+    --brown-color: #8B4513;
 
     --translucent-background: rgba(255, 255, 255, 0.25);
     --sector-background: rgba(0, 0, 0, 0);
     --dark-translucent-background: rgba(0, 0, 0, 0.15);
 
     --empty-border: 2px solid rgba(0, 0, 0, 0);
+    --dotted-empty-border: 2px dotted rgba(0, 0, 0, 0);
     --thin-empty-border: 1px solid rgba(0, 0, 0, 0);
     --default-transition: border 0.2s, color 0.2s, background-color 0.2s, box-shadow 0.2s, font-size 0.2s ease;
 }
@@ -58,8 +60,8 @@ iframe {
 h1, h2, h3, p {
     margin: 0;
     padding: 0;
-    font-family: 'Trebuchet MS', 'Calibri', sans-serif;
-    color: var(--gold-color);
+    font-family: 'PT Sans', sans-serif;
+    color: white;
 }
 
 .web-body {
@@ -101,80 +103,9 @@ h1, h2, h3, p {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-.main-sector-bottom-linkBtn {
-    height: 75px;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.main-sector-bottom-linkBtn a {
-    cursor: pointer;
-    height: 45px;
-    width: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--website-text);
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Lexend', 'Roboto', sans-serif;
-    border-radius: 10px;
-    text-decoration: none;
-    border: var(--empty-border);
-    background-color: var(--website-light-text);
-    transition: var(--default-transition);
-}
-.main-sector-bottom-linkBtn a:hover {
-    border-color: var(--website-text);
-}
-
-.main-sector-bottom-linkBtn a.linkBtn-blue {
-    color: var(--blue-cobalt);
-    border-color: var(--blue-cobalt);
-    background-color: var(--blue-zero);
-}
-.main-sector-bottom-linkBtn a.linkBtn-blue:hover {
-    background-color: var(--blue-two);
-    border-color: var(--blue-cobalt);
-}
-
 @media (max-width: 375px) {
     body {
         overflow-x: auto;
-    }
-}
-
-/**
- * These are styles meant specifically for a more dynamic info sector page.
- */
-
- .info-sector-v2, .info-sector-v3 {
-    position: relative;
-    width: calc(100% - 40px) !important;
-    left: 40px;
-}
-.personal-web-body-v2, .personal-web-body-v3 {
-    top: 0px;
-    height: 100%;
-}
-
-@media (min-width: 2000px) {
-    .info-sector-v2 {
-        transform: scale(1.5, 1.5);
-    }
-    .personal-web-body-v2 {
-        overflow: hidden;
-        overflow-x: hidden;
-        overflow-y: hidden;
-    }
-}
-
-@media (max-width: 600px) {
-    .info-sector-v2, .info-sector-v3 {
-        width: 100% !important;
-        left: 0;
-        top: 45px;
     }
 }
 
