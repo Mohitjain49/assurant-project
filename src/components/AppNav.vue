@@ -7,6 +7,9 @@
         <a :href="GITHUB_REPO_LINK" target="2025-ksu-hackathon" class="app-navBar-icon" title="Our GitHub Repository">
             <img :src="github_icon" />
         </a>
+        <a :href="COSINE_SIMILARITY_LINK" target="2025-ksu-hackathon" class="app-navBar-icon" title="Our Cosine Similarity">
+            <span> Γ(x) </span>
+        </a>
     </div>
 
     <div class="app-navBar-side right">
@@ -30,7 +33,9 @@ import { useRoute } from 'vue-router';
 
 const userStore = useUserStore();
 const route = useRoute();
+
 const GITHUB_REPO_LINK = "https://github.com/Mohitjain49/assurant-project";
+const COSINE_SIMILARITY_LINK = "https://github.com/h-s-perry/Hackathon/blob/main/SimilarityMeasure.py";
 
 /**
  * This returns the classes for the main navigation bar.
@@ -94,12 +99,24 @@ function getAppNavClasses() {
     border-radius: 10px;
     transition: var(--default-transition);
 }
+.app-navBar-icon span {
+    margin-left: 5px;
+    font-size: 25px;
+    padding: 5px;
+    border: var(--dotted-empty-border);
+    border-radius: 10px;
+    transition: var(--default-transition);
+}
 
 .app-navBar-icon img {
     width: 25px;
     padding: 4px;
 }
 .app-navBar-icon:hover svg, .app-navBar-icon:hover img {
+    background-color: var(--brown-color);
+    border-color: white;
+}
+.app-navBar-icon:hover span {
     background-color: var(--brown-color);
     border-color: white;
 }
