@@ -28,7 +28,9 @@ library.add(
     FaIcons.faStreetView,
     FaIcons.faImage,
     FaIcons.faPen,
-    FaIcons.faXmark
+    FaIcons.faXmark,
+    FaIcons.faPlus,
+    FaIcons.faArrowUp
 );
 
 
