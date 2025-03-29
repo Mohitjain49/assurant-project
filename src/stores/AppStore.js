@@ -3,16 +3,33 @@ import { ref } from 'vue';
 
 import axios from 'axios';
 import { useGlobeStore } from './GlobeStore.js';
+import { useUserStore } from './UserStore.js';
+
+const API_DOMAIN = "https://b6dhy9qo2m.execute-api.us-east-1.amazonaws.com/";
 
 export const useAppStore = defineStore('app-store', () => {
     const globeStore = useGlobeStore();
+    const userStore = useUserStore();
+
     const menuOpen = ref(3);
+    const meetups = ref(null);
+
+    /**
+     * This function mounts the application.
+     */
+    function mountApp() {
+        axios.get((API_DOMAIN + "get_all_meetups"), (response) => {
+            meetups.value = response.data;
+            console.log(response, meetups.value);
+        });
+    }
 
     /**
      * This function sets which menu is open on the app.
      * @param {Number} index The index of the menu.
      */
     function setMenuOpen(index = 0) {
+        if(!userStore.userPresent && index == 2) { index = 3; }
         menuOpen.value = index;
     }
 
@@ -31,5 +48,7 @@ export const useAppStore = defineStore('app-store', () => {
         })
     }
 
-    return { menuOpen, setMenuOpen, getCoordsOfCity };
+    return { menuOpen, meetups,
+        mountApp, setMenuOpen, getCoordsOfCity
+    };
 })
