@@ -21,6 +21,7 @@ library.add(
     FaIcons.faPaperPlane,
     FaIcons.faCircleUser,
     FaIcons.faUserPlus,
+    FaIcons.faArrowRightToBracket,
     FaIcons.faArrowRightFromBracket,
     FaIcons.faMagnifyingGlass,
     FaIcons.faUserGroup,
@@ -34,6 +35,7 @@ library.add(
 const COGNITO_VARIABLES = {
     userPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
     userPoolClientId: import.meta.env.VITE_COGNITO_USER_POOL_WEB_CLIENT_ID,
+    region: import.meta.env.VITE_AWS_REGION
 }
 
 Amplify.configure({

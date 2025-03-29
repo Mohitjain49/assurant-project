@@ -29,7 +29,7 @@ export const useUserStore = defineStore("user-store", () => {
     }
 
     /**
-     * This logs in the user into their iVue account.
+     * This logs in the user into their  account.
      * @param {Auth.SignInInput} params The necessary parameters for signing into an account.
      */
     function logInUser(params) {
@@ -65,7 +65,9 @@ export const useUserStore = defineStore("user-store", () => {
      * @param e The object representing the error. 
      */
     function onLogInError(e) {
+        console.log(e);
         const errorName = e.name;
+        
         if(errorName === "NotAuthorizedException") {
             setAuthErrorBox("Incorrect Email Or Password.");
         } else if(errorName === "EmptySignInUsername") {
@@ -84,14 +86,14 @@ export const useUserStore = defineStore("user-store", () => {
     function logOutUser(global = true) {
         Auth.signOut({ global }).then(() => {
             resetUserInfo();
-            router.push("/login");
+            router.push("/signin");
         }).catch((e) => {
-            router.push("/login");
+            router.push("/signin");
         })
     }
 
     /**
-     * This signs up a new user for an iVue account.
+     * This signs up a new user for an  account.
      * @param {Auth.SignUpInput} params The necessary parameters for signing up a new user.
      * @param {Function} confirmOpen This is the function to open the Confirmation Popup.
      */
@@ -101,6 +103,8 @@ export const useUserStore = defineStore("user-store", () => {
             confirmOpen();
         }).catch((e) => {
             const errorName = e.name;
+            console.log(e);
+
             if(errorName === "EmptySignUpUsername") {
                 setAuthErrorBox("Please Fill In Your Email.");
             } else if(errorName === "EmptySignUpPassword") {
@@ -112,7 +116,7 @@ export const useUserStore = defineStore("user-store", () => {
     }
 
     /**
-     * This signs up a new user for an iVue account.
+     * This signs up a new user for an  account.
      * @param {Auth.ConfirmSignUpInput} params The necessary parameters for confirming a new user signed up.
      * @param {Function} confirmClose This is the function to close the Confirmation Popup.
      */

@@ -30,7 +30,10 @@
 </template>
 
 <script setup>
+import { useUserStore } from '@/stores/UserStore.js';
 import { ref } from 'vue';
+
+const userStore = useUserStore();
 const editingProfile = ref(false);
 
 /**

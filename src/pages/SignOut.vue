@@ -1,15 +1,16 @@
 <template>
 <AppNav />
-<main class="web-body">
-    <h1> Hello </h1>
-</main>
+<main class="web-body"></main>
 </template>
 
 <script setup>
 import AppNav from '@/components/AppNav.vue';
-import { onMounted } from 'vue';
+import { useUserStore } from '@/stores/UserStore.js';
+import { onBeforeMount } from 'vue';
 
-onMounted(() => {
+const userStore = useUserStore();
+onBeforeMount(() => {
     document.title = "MMI | Sign Out";
+    userStore.logOutUser(true);
 })
 </script>

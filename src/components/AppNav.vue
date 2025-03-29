@@ -4,16 +4,19 @@
         <RouterLink to="/" class="app-navBar-icon" title="Go To Application">
             <font-awesome-icon icon="fa-house" />
         </RouterLink>
-        <RouterLink to="/contact" class="app-navBar-icon" title="Contact MMI">
-            <font-awesome-icon icon="fa-paper-plane" />
-        </RouterLink>
+        <a :href="GITHUB_REPO_LINK" target="2025-ksu-hackathon" class="app-navBar-icon" title="Our GitHub Repository">
+            <img :src="github_icon" />
+        </a>
     </div>
 
     <div class="app-navBar-side right">
         <RouterLink to="/signup" class="app-navBar-icon" title="Sign Up">
             <font-awesome-icon icon="fa-user-plus" />
         </RouterLink>
-        <RouterLink to="/signin" class="app-navBar-icon" title="Sign In">
+        <RouterLink v-if="!userStore.userPresent" to="/signin" class="app-navBar-icon" title="Sign In">
+            <font-awesome-icon icon="fa-arrow-right-to-bracket" />
+        </RouterLink>
+        <RouterLink v-if="userStore.userPresent" to="/signout" class="app-navBar-icon" title="Sign Out">
             <font-awesome-icon icon="fa-arrow-right-from-bracket" />
         </RouterLink>
     </div>
@@ -21,35 +24,13 @@
 </template>
 
 <script setup>
+import github_icon from "../assets/github_icon.svg";
+import { useUserStore } from '@/stores/UserStore.js';
 import { useRoute } from 'vue-router';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const userStore = useUserStore();
 const route = useRoute();
-const smallWidth = ref(0);
-
-onMounted(() => {
-    if(route.path != "/") { return; }
-    determineSmallWidth();
-    window.addEventListener("resize", determineSmallWidth);
-})
-onBeforeUnmount(() => {
-    if(route.path != "/") { return; }
-    window.removeEventListener("resize", determineSmallWidth);
-})
-
-/**
- * This function determines how the app should look based on the viewport width.
- */
-function determineSmallWidth() {
-    const windowWidth = window.innerWidth;
-    if(windowWidth < 1350) {
-        smallWidth.value = 1;
-    } else if(windowWidth < 600) {
-        smallWidth.value = 2;
-    } else {
-        smallWidth.value = 0;
-    }
-}
+const GITHUB_REPO_LINK = "https://github.com/Mohitjain49/assurant-project";
 
 /**
  * This returns the classes for the main navigation bar.
@@ -106,20 +87,25 @@ function getAppNavClasses() {
     align-items: center;
     color: white;
 }
-.app-navBar-icon svg {
+.app-navBar-icon svg, .app-navBar-icon img {
     font-size: 25px;
     padding: 5px;
     border: var(--dotted-empty-border);
     border-radius: 10px;
     transition: var(--default-transition);
 }
-.app-navBar-icon:hover svg {
+
+.app-navBar-icon img {
+    width: 25px;
+    padding: 4px;
+}
+.app-navBar-icon:hover svg, .app-navBar-icon:hover img {
     background-color: var(--brown-color);
     border-color: white;
 }
 
 @media (max-width: 500px) {
-    .app-navBar {
+    .app-navBar, .app-navBar.globe {
         position: absolute;
         width: calc(100% - 50px);
         min-width: 300px;
