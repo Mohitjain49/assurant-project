@@ -25,7 +25,9 @@ library.add(
     FaIcons.faMagnifyingGlass,
     FaIcons.faUserGroup,
     FaIcons.faStreetView,
-    FaIcons.faImage
+    FaIcons.faImage,
+    FaIcons.faPen,
+    FaIcons.faXmark
 );
 
 

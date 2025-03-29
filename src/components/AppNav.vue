@@ -114,7 +114,7 @@ function getAppNavClasses() {
     transition: var(--default-transition);
 }
 .app-navBar-icon:hover svg {
-    background-color: #8B4513;
+    background-color: var(--brown-color);
     border-color: white;
 }
 

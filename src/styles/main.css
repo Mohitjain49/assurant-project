@@ -21,6 +21,7 @@
     --gold-color: rgb(126, 90, 0);
     --gold-light: rgb(198, 147, 19);
     --orange-light: rgb(248, 206, 171);
+    --brown-color: #8B4513;
 
     --translucent-background: rgba(255, 255, 255, 0.25);
     --sector-background: rgba(0, 0, 0, 0);
@@ -60,7 +61,7 @@ h1, h2, h3, p {
     margin: 0;
     padding: 0;
     font-family: 'PT Sans', sans-serif;
-    color: var(--gold-color);
+    color: white;
 }
 
 .web-body {
