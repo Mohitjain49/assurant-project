@@ -32,7 +32,8 @@ library.add(
     FaIcons.faPen,
     FaIcons.faXmark,
     FaIcons.faPlus,
-    FaIcons.faArrowUp
+    FaIcons.faArrowUp,
+    FaIcons.faCalendar
 );
 
 

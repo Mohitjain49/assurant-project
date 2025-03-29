@@ -13,17 +13,24 @@ export const useAppStore = defineStore('app-store', () => {
 
     const menuOpen = ref(3);
     const meetups = ref(null);
+    const users = ref(null);
 
     /**
      * This function mounts the application.
      */
     function mountApp() {
         axios.get((API_DOMAIN + "get_all_meetups")).then((response) => {
-            meetups.value = response.data;
-            console.log(response, meetups.value);
+            meetups.value = response.data.data;
         }).catch((e) => {
             console.log(e);
-        })
+        });
+
+        axios.get((API_DOMAIN + "get")).then((response) => {
+            users.value = response.data;
+            console.log(users.value);
+        }).catch((e) => {
+            console.log(e);
+        });
     }
 
     /**
@@ -50,7 +57,7 @@ export const useAppStore = defineStore('app-store', () => {
         })
     }
 
-    return { menuOpen, meetups,
+    return { menuOpen, meetups, users,
         mountApp, setMenuOpen, getCoordsOfCity
     };
 })
